@@ -1,10 +1,7 @@
-'use client';
 import React from "react";
 
 
-
-const Stats = () => {
- 
+const Stats = ({data}) => {
 
   return (
     <div>
@@ -27,7 +24,7 @@ const Stats = () => {
           </div>
           <div className="stat-title">Heart Rate</div>
 
-          <div className="stat-value text-primary">{data.heartrates}</div>
+          <div className="stat-value text-primary">{data?.heartrates}</div>
 
           <div className="stat-desc">Under Control </div>
         </div>
@@ -49,18 +46,16 @@ const Stats = () => {
             </svg>
           </div>
           <div className="stat-title">Glucose</div>
-          <div className="stat-value text-secondary">{data.Glucose}</div>
+          <div className="stat-value text-secondary">{data?.Glucose}</div>
           <div className="stat-desc">Good</div>
         </div>
 
         <div className="stat">
           <div className="stat-figure text-secondary">
-            <div className="avatar online">
-              
-            </div>
+            <div className="avatar online"></div>
           </div>
           <div className="stat-value">Temprature</div>
-          <div className="stat-title">{data.temprature}  C</div>
+          <div className="stat-title">{data?.temprature} C</div>
           <div className="stat-desc text-secondary">not high</div>
         </div>
       </div>
