@@ -1,12 +1,12 @@
-import React, { useContext } from 'react';
-import Stats from '../components/stats';
-import Table from "../components/table";
-import Nav from "../components/nav";
-import Container from "../components/container";
-import { useData } from '../../context/DataContext';
+'use client';
+import Stats from '../../components/stats';
+import Table from "../../components/table";
+import Nav from "../../components/nav";
+import Container from "../../components/container";
+// import { getServerSideProps } from 'next/dist/build/templates/pages';
 
-const Dashboard = () => {
-  const { data } = useData;
+
+const Dashboard = ({data}) => {
 
   return (
     <div className="theme-controller p-5">

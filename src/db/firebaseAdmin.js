@@ -3,6 +3,7 @@ import admin from "firebase-admin";
 function formatPrivateKey(key){
     return key.replace(/\\n/g, "\n")
 }
+
 export function createFirebaseAdminApp(params){
         const privateKey = formatPrivateKey(params.privateKey);
 
@@ -20,8 +21,9 @@ export function createFirebaseAdminApp(params){
             storageBucket:params.storageBucket
         });
 }
+
 export async function fetchData(collectionName) {
-    const app = initAdmin();
+    const app = await initAdmin();
     const db = admin.firestore(app);
     const snapshot = await db.collection(collectionName).get();
   
@@ -30,9 +32,9 @@ export async function fetchData(collectionName) {
       ...doc.data(),
     }));
   
+    console.log(data);
     return data;
-  }
-  
+}
 
 export async function initAdmin(){
     const params = {

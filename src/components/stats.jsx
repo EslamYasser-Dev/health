@@ -1,7 +1,17 @@
-import React from "react";
+import { useData } from '@/context/DataContext';
+import React from 'react';
 
+
+export async function getServerSideProps(_context) {
+  await initAdmin();
+
+  const data = await fetchData('health');
+
+  return { props: { data } };
+}
 
 const Stats = ({data}) => {
+  // const { data } = useData();
 
   return (
     <div>
@@ -23,9 +33,7 @@ const Stats = ({data}) => {
             </svg>
           </div>
           <div className="stat-title">Heart Rate</div>
-
           <div className="stat-value text-primary">{data?.heartrates}</div>
-
           <div className="stat-desc">Under Control </div>
         </div>
 
@@ -54,8 +62,8 @@ const Stats = ({data}) => {
           <div className="stat-figure text-secondary">
             <div className="avatar online"></div>
           </div>
-          <div className="stat-value">Temprature</div>
-          <div className="stat-title">{data?.temprature} C</div>
+          <div className="stat-value">Temperature</div>
+          <div className="stat-title">{data?.temperature} C</div>
           <div className="stat-desc text-secondary">not high</div>
         </div>
       </div>
