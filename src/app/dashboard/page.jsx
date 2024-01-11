@@ -1,24 +1,23 @@
-'use client';
 import Stats from '../../components/stats';
 import Table from "../../components/table";
 import Nav from "../../components/nav";
 import Container from "../../components/container";
 // import { getServerSideProps } from 'next/dist/build/templates/pages';
 
+import "server-only";
 
 const Dashboard = ({data}) => {
 
   return (
     <div className="theme-controller p-5">
-      <Nav />
       <Stats data={data}/> 
-      <div className="flex gap-5 m-5">
+      <div className="flex gap-1/5 m-1/3">
         <Container />
-        <Container />
-        <Container />
+      
+       
         <Container />
       </div>
-      <Container />
+     
 
       <Table />
     </div>

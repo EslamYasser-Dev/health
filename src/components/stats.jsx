@@ -1,8 +1,7 @@
-import { useData } from '@/context/DataContext';
+import "server-only";
 import React from 'react';
 
-
-export async function getServerSideProps(_context) {
+export async function getServerSideProps(context) {
   await initAdmin();
 
   const data = await fetchData('health');
@@ -11,32 +10,20 @@ export async function getServerSideProps(_context) {
 }
 
 const Stats = ({data}) => {
-  // const { data } = useData();
-
   return (
-    <div>
-      <div className="stats shadow">
+    <div className="flex flex-wrap justify-around shadow-xl">
+      <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
         <div className="stat">
           <div className="stat-figure text-primary">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="inline-block w-8 h-8 stroke-current"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-              ></path>
-            </svg>
+            
+            
           </div>
           <div className="stat-title">Heart Rate</div>
-          <div className="stat-value text-primary">{data?.heartrates}</div>
-          <div className="stat-desc">Under Control </div>
+          <div className="stat-value text-primary">{data[0].bloodPressure}</div>
+          <div className="stat-desc">Under Control</div>
         </div>
-
+      </div>
+      <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
         <div className="stat">
           <div className="stat-figure text-secondary">
             <svg
@@ -54,16 +41,17 @@ const Stats = ({data}) => {
             </svg>
           </div>
           <div className="stat-title">Glucose</div>
-          <div className="stat-value text-secondary">{data?.Glucose}</div>
+          <div className="stat-value text-secondary">{data[0].heartRate}</div>
           <div className="stat-desc">Good</div>
         </div>
-
+      </div>
+      <div className="w-full sm:w-1/2 lg:w-1/3 p-4">
         <div className="stat">
           <div className="stat-figure text-secondary">
             <div className="avatar online"></div>
           </div>
           <div className="stat-value">Temperature</div>
-          <div className="stat-title">{data?.temperature} C</div>
+          <div className="stat-title">{data[0].glucoseValue}</div>
           <div className="stat-desc text-secondary">not high</div>
         </div>
       </div>

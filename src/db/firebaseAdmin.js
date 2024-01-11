@@ -1,3 +1,4 @@
+import "server-only";
 import admin from "firebase-admin";
 
 function formatPrivateKey(key){
@@ -21,21 +22,6 @@ export function createFirebaseAdminApp(params){
             storageBucket:params.storageBucket
         });
 }
-
-export async function fetchData(collectionName) {
-    const app = await initAdmin();
-    const db = admin.firestore(app);
-    const snapshot = await db.collection(collectionName).get();
-  
-    const data = snapshot.docs.map(doc => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
-  
-    console.log(data);
-    return data;
-}
-
 export async function initAdmin(){
     const params = {
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -46,3 +32,26 @@ export async function initAdmin(){
 
     return createFirebaseAdminApp(params);
 }
+
+export async function fetchData(collectionName) {
+    try {
+        const app = await initAdmin();
+    const db = admin.firestore(app);
+    const snapshot = await db.collection(collectionName).get();
+  
+    const data = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data(),
+            
+    }));
+    return data;
+    } catch (error) {
+        console.log(error);
+    }
+    
+  
+    console.log("Fetch Data has been called");
+    return error;
+}
+
+

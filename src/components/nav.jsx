@@ -1,10 +1,12 @@
 import Link from "next/link";
 import React from "react";
-
+import "server-only";
 const Nav = () => {
+  const userid = 1524;
+  let islogin = true;
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar bg-base-300 shadow-md">
         <div className="flex-1">
           <a className="btn btn-ghost text-xl">Realtime Health dashboard</a>
         </div>
@@ -52,6 +54,7 @@ const Nav = () => {
               className="input input-bordered w-24 md:w-auto"
             />
           </div>
+         
           <div className="dropdown dropdown-end">
             <div
               tabIndex={0}
@@ -70,17 +73,18 @@ const Nav = () => {
               className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
             >
               <li>
-                <Link href={'/profile'} className="justify-between">            
+                <Link href={'/profile/'+userid} className="justify-between">            
                   Profile
                   <span className="badge">edit</span>
-                
                 </Link>
               </li>
               <li>
                 <a>Settings</a>
               </li>
               <li>
-                <a>Logout</a>
+                <Link href={'/login'} onClick={islogin=false}>
+                  {islogin ? 'logout': 'login'}
+                </Link>
               </li>
             </ul>
           </div>
